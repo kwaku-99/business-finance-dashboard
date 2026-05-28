@@ -400,3 +400,314 @@ At this stage, the following concepts are now understood:
 * synchronization between terminal and VS Code
 
 This setup phase established the foundation for the actual application development phase.
+
+# Git, GitHub, and Virtual Environment Setup
+
+## Git Initialization
+
+Initialized Git repository inside the project folder.
+
+Command used:
+
+```powershell
+git init
+```
+
+Learned:
+
+* Git tracks project history and file changes.
+* A Git repository stores snapshots (commits) of project progress.
+* This allows collaboration, rollback, and version control.
+
+---
+
+# Git Status
+
+Checked repository status.
+
+Command used:
+
+```powershell
+git status
+```
+
+Learned:
+
+* Git shows file states:
+
+  * `U` = Untracked
+  * `A` = Added/Staged
+  * `M` = Modified
+* Git does not automatically track files.
+* Files must first be added before committing.
+
+---
+
+# Staging Files
+
+Added project files to Git staging area.
+
+Command used:
+
+```powershell
+git add .
+```
+
+Learned:
+
+* `git add .` stages all current project files.
+* Staging prepares files for commit.
+* Git now begins tracking these files.
+
+---
+
+# First Commit
+
+Created first project snapshot.
+
+Command used:
+
+```powershell
+git commit -m "Initial project setup"
+```
+
+Learned:
+
+* Commits are save points/checkpoints in project history.
+* Commit messages should clearly describe meaningful progress.
+* Professional developers commit after stable progress.
+
+---
+
+# GitHub Repository Creation
+
+Created remote GitHub repository called:
+
+```text
+business-finance-dashboard
+```
+
+Repository was created without:
+
+* README
+* .gitignore
+* license
+
+because these already existed locally.
+
+Learned:
+
+* Local repository and remote GitHub repository are separate initially.
+* GitHub acts as cloud storage + collaboration platform.
+
+---
+
+# Connecting Local Repo to GitHub
+
+Connected local Git repository to remote GitHub repository.
+
+Command used:
+
+```powershell
+git remote add origin https://github.com/USERNAME/business-finance-dashboard.git
+```
+
+Learned:
+
+* `origin` is the nickname for the remote GitHub repository.
+* `.git` is part of GitHub repository URLs.
+* Remote repositories allow collaboration and cloud syncing.
+
+---
+
+# First Push to GitHub
+
+Uploaded local project to GitHub.
+
+Command used:
+
+```powershell
+git push -u origin main
+```
+
+Learned:
+
+* `push` uploads commits to GitHub.
+* `main` is the main branch.
+* `-u` links local branch to remote branch for future pushes.
+
+After successful push:
+
+* GitHub repository updated successfully.
+* Collaborators could now access the project.
+
+---
+
+# Adding Collaborators
+
+Added teammates as collaborators on GitHub.
+
+Learned:
+
+* Collaborators can clone the repository to their laptops.
+* Team members can contribute code from different locations.
+* GitHub enables distributed software development.
+
+---
+
+# Virtual Environment Setup
+
+Created isolated Python environment for the project.
+
+Command used:
+
+```powershell
+python -m venv .venv
+```
+
+Learned:
+
+* Virtual environments isolate project dependencies.
+* Each project can have its own packages and versions.
+* Prevents conflicts between projects.
+* `.venv` is the standard naming convention.
+
+---
+
+# Understanding `.venv`
+
+Inside `.venv` appeared:
+
+* Include/
+* Lib/
+* Scripts/
+* pyvenv.cfg
+
+Learned:
+
+* `.venv` contains a mini isolated Python installation.
+* Python automatically manages most internal files.
+* This folder should NOT be uploaded to GitHub.
+
+---
+
+# Why `.venv` is in `.gitignore`
+
+Learned:
+
+* `.venv` can become extremely large.
+* It contains machine-specific files.
+* Each teammate generates their own `.venv`.
+* Only dependency lists should be shared.
+
+---
+
+# Virtual Environment Activation
+
+Activated virtual environment.
+
+Command used:
+
+```powershell
+.venv\Scripts\activate
+```
+
+Initial error encountered:
+
+```text
+running scripts is disabled on this system
+```
+
+Reason:
+
+* PowerShell execution policy blocked script execution.
+
+Fix used:
+
+```powershell
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+```
+
+Then typed:
+
+```text
+Y
+```
+
+Activation succeeded afterward.
+
+Terminal changed to:
+
+```text
+(.venv)
+```
+
+Learned:
+
+* Activation switches terminal into project-specific Python environment.
+* Package installations now happen INSIDE `.venv`.
+* This is standard professional Python workflow.
+
+---
+
+# Installing Packages
+
+Installed first package: pandas.
+
+Command used:
+
+```powershell
+pip install pandas
+```
+
+Learned:
+
+* `pip` is Python’s package manager.
+* Installing pandas also installed dependencies:
+
+  * numpy
+  * python-dateutil
+  * tzdata
+  * six
+* Software packages often depend on other packages.
+
+---
+
+# Requirements File
+
+Saved installed dependencies into requirements.txt.
+
+Command used:
+
+```powershell
+pip freeze > requirements.txt
+```
+
+Learned:
+
+* `pip freeze` lists installed packages and versions.
+* `>` redirects terminal output into a file.
+* `requirements.txt` acts as the dependency recipe for the project.
+* Teammates can recreate the same environment using:
+
+```powershell
+pip install -r requirements.txt
+```
+
+This is critical for collaboration and reproducibility.
+
+---
+
+# Current Understanding
+
+The project now has:
+
+* professional folder structure
+* Git version control
+* GitHub collaboration
+* virtual environment isolation
+* dependency management
+* reproducible setup workflow
+* project history tracking
+
+This setup reflects real-world software engineering workflow.
